@@ -105,7 +105,16 @@ def prepare_coco_data(seed=1, percent=10.0, version=2017, seed_offset=0):
         version=version, seed=seed, tot=int(percent)
     )
     _save_anno(save_name, unlabeled_images, unlabeled_annotations)
-
+    #construct 120k unlabeled data
+    unlabeled_ann_file = os.path.join(COCOANNODIR, "instances_unlabeled{}.json".format(version))
+    if not os.path.exists(unlabeled_ann_file):
+        unlabeled_info = json.load(
+            open(os.path.join(COCOANNODIR, "image_info_unlabeled{}.json".format(version)))
+        )
+        unlabeled_info["annotations"] = []
+        unlabeled_info["categories"] = anno["categories"]
+        print(">> Data {}.json saved({} images {} annotations)".format(unlabeled_ann_file,len(unlabeled_info["images"]),len(unlabeled_info["annotations"])))
+        json.dump(unlabeled_info,open(os.path.join(COCOANNODIR, "instances_unlabeled{}.json".format(version)),'w'))
 
 if __name__ == "__main__":
 
