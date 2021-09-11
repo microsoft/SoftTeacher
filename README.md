@@ -28,7 +28,7 @@ This repo is the official implementation of ["End-to-End Semi-Supervised Object 
 
 ### Partial Labeled Data
 
-We followed STAC[1] to evalutate on 5 different data splits for each settings, and report the average performance of 5 splits. The results are shown in the following:
+We followed STAC[1] to evaluate on 5 different data splits for each settings, and report the average performance of 5 splits. The results are shown in the following:
 
 #### 1% labeled data
 | Method | mAP| Model Weights |Config Files|
