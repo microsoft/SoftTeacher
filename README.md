@@ -28,7 +28,7 @@ This repo is the official implementation of ["End-to-End Semi-Supervised Object 
 
 ### Partial Labeled Data
 
-We followed STAC[1] to evalutate on 5 different data splits for each settings, and report the average performance of 5 splits. The results are shown in the following:
+We followed STAC[1] to evaluate on 5 different data splits for each setting, and report the average performance of 5 splits. The results are shown in the following:
 
 #### 1% labeled data
 | Method | mAP| Model Weights |Config Files|
@@ -71,7 +71,7 @@ We followed STAC[1] to evalutate on 5 different data splits for each settings, a
 
 
 ### Notes
-- Ours* means we use longger training schedule.
+- Ours* means we use longer training schedule.
 - `thr` indicates `model.test_cfg.rcnn.score_thr` in config files. This inference trick was first introduced by Instant-Teaching[2].
 - All models are trained on 8*V100 GPUs
 
