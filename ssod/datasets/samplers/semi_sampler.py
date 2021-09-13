@@ -123,7 +123,7 @@ class DistributedGroupSemiBalanceSampler(Sampler):
                         ratio = [0] * len(shuffled_indice_per_dataset)
                         for u, c in zip(unique, counts):
                             ratio[u] = c
-                        assert len(ratio) == 2, "Only two set is suppoted"
+                        assert len(ratio) == 2, "Only two set is supported"
                         if ratio[0] == 0:
                             ratio[0] = 1
                             ratio[1] -= 1

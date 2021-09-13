@@ -76,6 +76,6 @@ def patch_config(cfg):
     if cfg.get("semi_wrapper", None) is not None:
         cfg.model = cfg.semi_wrapper
         cfg.pop("semi_wrapper")
-    # enable enviroment variables
+    # enable environment variables
     setup_env(cfg)
     return cfg

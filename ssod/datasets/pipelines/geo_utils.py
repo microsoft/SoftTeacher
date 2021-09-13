@@ -1,5 +1,5 @@
 """
-Recored the geometric transformation information used in the augmentation in a transformation matrix.
+Record the geometric transformation information used in the augmentation in a transformation matrix.
 """
 import numpy as np
 
