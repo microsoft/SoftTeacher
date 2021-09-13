@@ -1,34 +1,8 @@
-_base_ = "base.py"
+_base_ = "soft_teacher_faster_rcnn_r50_caffe_fpn_coco_full_720k.py"
 model = dict(
     backbone=dict(
         depth=101,
         init_cfg=dict(checkpoint="open-mmlab://detectron2/resnet101_caffe"),
-    )
-)
-
-data = dict(
-    samples_per_gpu=8,
-    workers_per_gpu=8,
-    train=dict(
-        sup=dict(
-            ann_file="data/coco/annotations/instances_train2017.json",
-            img_prefix="data/coco/train2017/",
-        ),
-        unsup=dict(
-            ann_file="data/coco/annotations/instances_unlabeled2017.json",
-            img_prefix="data/coco/unlabeled2017/",
-        ),
-    ),
-    sampler=dict(
-        train=dict(
-            sample_ratio=[1, 1],
-        )
-    ),
-)
-
-semi_wrapper = dict(
-    train_cfg=dict(
-        unsup_weight=2.0,
     )
 )
 

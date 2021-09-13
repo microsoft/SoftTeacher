@@ -180,7 +180,7 @@ weak_pipeline = [
 unsup_pipeline = [
     dict(type="LoadImageFromFile"),
     # dict(type="LoadAnnotations", with_bbox=True),
-    # generate fake labels for data format compability
+    # generate fake labels for data format compatibility
     dict(type="PseudoSamples", with_bbox=True),
     dict(
         type="MultiBranch", unsup_teacher=strong_pipeline, unsup_student=weak_pipeline
@@ -256,8 +256,7 @@ semi_wrapper = dict(
 custom_hooks = [
     dict(type="NumClassCheckHook"),
     dict(type="WeightSummary"),
-    dict(type="MeanTeacher", momentum=0.999, interval=1, warm_up=0),
-    dict(type="Weighter", steps=[-5000], vals=[4, 0], name="unsup_weight"),
+    dict(type="MeanTeacher", momentum=0.999, interval=1, warm_up=0)
 ]
 evaluation = dict(type="SubModulesDistEvalHook", interval=4000)
 optimizer = dict(type="SGD", lr=0.01, momentum=0.9, weight_decay=0.0001)

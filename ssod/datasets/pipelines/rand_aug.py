@@ -425,7 +425,7 @@ class RandTranslate(GeometricAugmentation):
                 min_y = np.maximum(0, min_y + offset)
                 max_y = np.minimum(h, max_y + offset)
 
-            # the boxs translated outside of image will be filtered along with
+            # the boxes translated outside of image will be filtered along with
             # the corresponding masks, by invoking ``_filter_invalid``.
             results[key] = np.concatenate([min_x, min_y, max_x, max_y], axis=-1)
 
