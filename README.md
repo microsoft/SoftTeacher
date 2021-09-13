@@ -3,7 +3,7 @@
 By [Mengde Xu*](https://scholar.google.com/citations?user=C04zJHEAAAAJ&hl=zh-CN), [Zheng Zhang*](https://github.com/stupidZZ), [Han Hu](https://github.com/ancientmooner), [Jianfeng Wang](https://github.com/amsword), [Lijuan Wang](https://www.microsoft.com/en-us/research/people/lijuanw/), [Fangyun Wei](https://scholar.google.com.tw/citations?user=-ncz2s8AAAAJ&hl=zh-TW), [Xiang Bai](http://cloud.eic.hust.edu.cn:8071/~xbai/), [Zicheng Liu](https://www.microsoft.com/en-us/research/people/zliu/).
 
 ![](./resources/pipeline.png)
-This repo is the official implementation of ["End-to-End Semi-Supervised Object Detection with Soft Teacher"](https://arxiv.org/abs/2106.09018).
+This repo is the official implementation of ICCV2021 paper ["End-to-End Semi-Supervised Object Detection with Soft Teacher"](https://arxiv.org/abs/2106.09018).
 
 ## Citation
 
@@ -11,7 +11,7 @@ This repo is the official implementation of ["End-to-End Semi-Supervised Object 
 @article{xu2021end,
   title={End-to-End Semi-Supervised Object Detection with Soft Teacher},
   author={Xu, Mengde and Zhang, Zheng and Hu, Han and Wang, Jianfeng and Wang, Lijuan and Wei, Fangyun and Bai, Xiang and Liu, Zicheng},
-  journal={arXiv preprint arXiv:2106.09018},
+  journal={Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
   year={2021}
 }
 ```
@@ -141,6 +141,5 @@ bash tools/dist_test.sh <CONFIG_FILE_PATH> <CHECKPOINT_PATH> <NUM_GPUS> --eval b
 [1] [A Simple Semi-Supervised Learning Framework for Object Detection](https://arxiv.org/pdf/2005.04757.pdf) 
 
 
-[2] [Instant-Teaching: An End-to-End Semi-Supervised
-Object Detection Framework](https://arxiv.org/pdf/2103.11402.pdf)
+[2] [Instant-Teaching: An End-to-End Semi-SupervisedObject Detection Framework](https://arxiv.org/pdf/2103.11402.pdf)
 
