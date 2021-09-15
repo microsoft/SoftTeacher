@@ -86,7 +86,7 @@ We followed STAC[1] to evaluate on 5 different data splits for each setting, and
 - `wandb=0.10.31`
 
 #### Notes
-- We use [wandb](https://wandb.ai/) for visualization, if you don't want to use it, just comment line `276-289` in `configs/soft_teacher/base.py`.
+- We use [wandb](https://wandb.ai/) for visualization, if you don't want to use it, just comment line `273-284` in `configs/soft_teacher/base.py`.
 
 ### Installation
 ```
