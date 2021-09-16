@@ -24,12 +24,14 @@ class MultiSteamDetector(BaseDetector):
         else:
             model: TwoStageDetector = getattr(self, self.inference_on)
         return model
-    def freeze(self,model_ref:str):
+
+    def freeze(self, model_ref: str):
         assert model_ref in self.submodules
         model = getattr(self, model_ref)
         model.eval()
         for param in model.parameters():
-            param.requires_grad=False
+            param.requires_grad = False
+
     def forward_test(self, imgs, img_metas, **kwargs):
 
         return self.model(**kwargs).forward_test(imgs, img_metas, **kwargs)
@@ -52,33 +54,6 @@ class MultiSteamDetector(BaseDetector):
     async def async_simple_test(self, img, img_metas, **kwargs):
         return self.model(**kwargs).async_simple_test(img, img_metas, **kwargs)
 
-    def show_result(
-        self,
-        img,
-        result,
-        score_thr=0.3,
-        bbox_color=(72, 101, 241),
-        text_color=(72, 101, 241),
-        mask_color=None,
-        thickness=2,
-        font_size=13,
-        win_name="",
-        show=False,
-        wait_time=0,
-        out_file=None,
-    ):
-        return self.model().show_result(
-            self,
-            img,
-            result,
-            score_thr,
-            bbox_color,
-            text_color,
-            mask_color,
-            thickness,
-            font_size,
-            win_name,
-            show,
-            wait_time,
-            out_file,
-        )
+    def show_result(self, *args, **kwargs):
+        self.model().CLASSES = self.CLASSES
+        return self.model().show_result(*args, **kwargs)

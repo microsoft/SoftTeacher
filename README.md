@@ -104,7 +104,7 @@ make install
 #     train2017/
 #     val2017/
 #     unlabeled2017/
-#     annotations/ 
+#     annotations/
 ln -s ${YOUR_DATA} data
 bash tools/dataset/prepare_coco_data.sh conduct
 
@@ -141,13 +141,34 @@ bash tools/dist_train.sh configs/soft_teacher/soft_teacher_faster_rcnn_r50_caffe
 
 
 
-### Inference
+### Evaluation
 ```
 bash tools/dist_test.sh <CONFIG_FILE_PATH> <CHECKPOINT_PATH> <NUM_GPUS> --eval bbox --cfg-options model.test_cfg.rcnn.score_thr=<THR>
 ```
+### Inference
+  To inference with trained model and visualize the detection results:
 
-[1] [A Simple Semi-Supervised Learning Framework for Object Detection](https://arxiv.org/pdf/2005.04757.pdf) 
+  ```shell script
+  # [IMAGE_FILE_PATH]: the path of your image file in local file system
+  # [CONFIG_FILE]: the path of a confile file
+  # [CHECKPOINT_PATH]: the path of a trained model related to provided confilg file.
+  # [OUTPUT_PATH]: the directory to save detection result
+  python demo/image_demo.py [IMAGE_FILE_PATH] [CONFIG_FILE] [CHECKPOINT_PATH] --output [OUTPUT_PATH]
+  ```
+  For example:
+  - Inference on single image with provided `R50` model:
+   ```shell script
+  python demo/image_demo.py /tmp/tmp.png configs/soft_teacher/soft_teacher_faster_rcnn_r50_caffe_fpn_coco_full_720k.py work_dirs/downloaded.model --output work_dirs/
+  ```
+
+  After the program completes, a image with the same name as input will be saved to `work_dirs`
+
+  - Inference on many images with provided `R50` model:
+   ```shell script
+  python demo/image_demo.py '/tmp/*.jpg' configs/soft_teacher/soft_teacher_faster_rcnn_r50_caffe_fpn_coco_full_720k.py work_dirs/downloaded.model --output work_dirs/
+  ```
+
+[1] [A Simple Semi-Supervised Learning Framework for Object Detection](https://arxiv.org/pdf/2005.04757.pdf)
 
 
 [2] [Instant-Teaching: An End-to-End Semi-SupervisedObject Detection Framework](https://arxiv.org/pdf/2103.11402.pdf)
-
