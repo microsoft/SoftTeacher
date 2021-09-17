@@ -39,7 +39,7 @@ class SubModulesDistEvalHook(DistEvalHook):
         if not self._should_evaluate(runner):
             return
         # TODO: add `runner.mode = "val"`
-
+        runner.log_buffer.clear()
         tmpdir = self.tmpdir
         if tmpdir is None:
             tmpdir = osp.join(runner.work_dir, ".eval_hook")
@@ -81,12 +81,13 @@ class SubModulesDistEvalHook(DistEvalHook):
                     best_score = key_score
 
             print("\n")
-            runner.log_buffer.output["eval_iter_num"] = len(self.dataloader)
+            # runner.log_buffer.output["eval_iter_num"] = len(self.dataloader)
             if self.save_best:
                 self._save_ckpt(runner, best_score)
 
     def evaluate(self, runner, results, prefix=""):
         """Evaluate the results.
+
         Args:
             runner (:obj:`mmcv.Runner`): The underlined training runner.
             results (list): Output results.

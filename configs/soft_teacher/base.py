@@ -256,7 +256,7 @@ semi_wrapper = dict(
 custom_hooks = [
     dict(type="NumClassCheckHook"),
     dict(type="WeightSummary"),
-    dict(type="MeanTeacher", momentum=0.999, interval=1, warm_up=0)
+    dict(type="MeanTeacher", momentum=0.999, interval=1, warm_up=0),
 ]
 evaluation = dict(type="SubModulesDistEvalHook", interval=4000)
 optimizer = dict(type="SGD", lr=0.01, momentum=0.9, weight_decay=0.0001)
@@ -269,7 +269,7 @@ fp16 = dict(loss_scale="dynamic")
 log_config = dict(
     interval=50,
     hooks=[
-        dict(type="TextLoggerHook"),
+        dict(type="TextLoggerHook", by_epoch=False),
         dict(
             type="WandbLoggerHook",
             init_kwargs=dict(
