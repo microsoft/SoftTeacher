@@ -10,6 +10,7 @@ help() {
 }
 download() {
   mkdir -p coco
+  cd coco
   for split in train2017 val2017 unlabeled2017;
     do
       wget http://images.cocodataset.org/zips/${split}.zip;
@@ -17,6 +18,9 @@ download() {
     done
   wget http://images.cocodataset.org/annotations/annotations_trainval2017.zip
   unzip annotations_trainval2017.zip
+  wget http://images.cocodataset.org/annotations/image_info_unlabeled2017.zip
+  unzip image_info_unlabeled2017.zip
+  cd ..
 }
 conduct() {
   OFFSET=$RANDOM

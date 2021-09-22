@@ -109,7 +109,7 @@ ln -s ${YOUR_DATA} data
 bash tools/dataset/prepare_coco_data.sh conduct
 
 ```
-
+For concrete instructions of what should be downloaded, please refer to `tools/dataset/prepare_coco_data.sh` line [`11-24`](https://github.com/microsoft/SoftTeacher/blob/863d90a3aa98615be3d156e7d305a22c2a5075f5/tools/dataset/prepare_coco_data.sh#L11)
 ### Training
 - To train model on the **partial labeled data** setting:
 ```shell script
