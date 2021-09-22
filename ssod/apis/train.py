@@ -174,7 +174,7 @@ def train_detector(
                 eval_cfg, HOOKS, default_args=dict(dataloader=val_dataloader)
             )
 
-        runner.register_hook(eval_hook)
+        runner.register_hook(eval_hook, priority=80)
 
     # user-defined hooks
     if cfg.get("custom_hooks", None):
