@@ -1,11 +1,27 @@
 import os.path as osp
 
 import torch.distributed as dist
+from mmcv.runner.hooks import LoggerHook, WandbLoggerHook
 from mmdet.core import DistEvalHook as BaseDistEvalHook
 from torch.nn.modules.batchnorm import _BatchNorm
 
 
 class DistEvalHook(BaseDistEvalHook):
+    def after_train_iter(self, runner):
+        """Called after every training iter to evaluate the results."""
+        if not self.by_epoch and self._should_evaluate(runner):
+            for hook in runner._hooks:
+                if isinstance(hook, WandbLoggerHook):
+                    _commit_state = hook.commit
+                    hook.commit = False
+                if isinstance(hook, LoggerHook):
+                    hook.after_train_iter(runner)
+                if isinstance(hook, WandbLoggerHook):
+                    hook.commit = _commit_state
+            runner.log_buffer.clear()
+
+            self._do_evaluate(runner)
+
     def _do_evaluate(self, runner):
         """perform evaluation and save ckpt."""
         # Synchronization of BatchNorm's buffer (running_mean
@@ -23,7 +39,6 @@ class DistEvalHook(BaseDistEvalHook):
         if not self._should_evaluate(runner):
             return
 
-        runner.log_buffer.clear()
         tmpdir = self.tmpdir
         if tmpdir is None:
             tmpdir = osp.join(runner.work_dir, ".eval_hook")

@@ -2,7 +2,7 @@ import os.path as osp
 
 import torch.distributed as dist
 from mmcv.parallel import is_module_wrapper
-from mmcv.runner.hooks import HOOKS
+from mmcv.runner.hooks import HOOKS, LoggerHook, WandbLoggerHook
 from mmdet.core import DistEvalHook
 from torch.nn.modules.batchnorm import _BatchNorm
 
@@ -21,6 +21,21 @@ class SubModulesDistEvalHook(DistEvalHook):
         assert hasattr(model, "submodules")
         assert hasattr(model, "inference_on")
 
+    def after_train_iter(self, runner):
+        """Called after every training iter to evaluate the results."""
+        if not self.by_epoch and self._should_evaluate(runner):
+            for hook in runner._hooks:
+                if isinstance(hook, WandbLoggerHook):
+                    _commit_state = hook.commit
+                    hook.commit = False
+                if isinstance(hook, LoggerHook):
+                    hook.after_train_iter(runner)
+                if isinstance(hook, WandbLoggerHook):
+                    hook.commit = _commit_state
+            runner.log_buffer.clear()
+
+            self._do_evaluate(runner)
+
     def _do_evaluate(self, runner):
         """perform evaluation and save ckpt."""
         # Synchronization of BatchNorm's buffer (running_mean
@@ -38,8 +53,7 @@ class SubModulesDistEvalHook(DistEvalHook):
 
         if not self._should_evaluate(runner):
             return
-        # TODO: add `runner.mode = "val"`
-        runner.log_buffer.clear()
+
         tmpdir = self.tmpdir
         if tmpdir is None:
             tmpdir = osp.join(runner.work_dir, ".eval_hook")
