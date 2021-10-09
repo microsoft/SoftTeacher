@@ -66,8 +66,8 @@ We followed STAC[1] to evaluate on 5 different data splits for each setting, and
 | Model | mAP| Model Weights |Config Files|
 | ------ |--- | ----- |----|
 | Baseline |  43.8 | -   | [Config](configs/baseline/faster_rcnn_r101_caffe_fpn_coco_full_720k.py) |
-| Ours* (thr=5e-2) |  46.8 | - |[Config](configs/soft_teacher/soft_teacher_faster_rcnn_r101_caffe_fpn_coco_full_1080k.py) |
-| Ours* (thr=1e-3) |  47.3 | - | [Config](configs/soft_teacher/soft_teacher_faster_rcnn_r101_caffe_fpn_coco_full_1080k.py) |
+| Ours* (thr=5e-2) |  46.9 | [Drive](https://drive.google.com/file/d/1LCZpIKBt0ihnPmvvZolV-L94uIn-U7Sp/view?usp=sharing) |[Config](configs/soft_teacher/soft_teacher_faster_rcnn_r101_caffe_fpn_coco_full_1080k.py) |
+| Ours* (thr=1e-3) |  47.6 | [Drive](https://drive.google.com/file/d/1LCZpIKBt0ihnPmvvZolV-L94uIn-U7Sp/view?usp=sharing) | [Config](configs/soft_teacher/soft_teacher_faster_rcnn_r101_caffe_fpn_coco_full_1080k.py) |
 
 
 ### Notes
