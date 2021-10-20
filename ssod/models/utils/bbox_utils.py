@@ -236,7 +236,7 @@ class Transform2D:
 
 
 def filter_invalid(bbox, label=None, score=None, mask=None, thr=0.0, min_size=0):
-    if (score is not None) and (thr > 0):
+    if score is not None:
         valid = score > thr
         bbox = bbox[valid]
         if label is not None:
