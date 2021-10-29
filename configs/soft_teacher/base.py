@@ -183,7 +183,7 @@ unsup_pipeline = [
     # generate fake labels for data format compatibility
     dict(type="PseudoSamples", with_bbox=True),
     dict(
-        type="MultiBranch", unsup_teacher=strong_pipeline, unsup_student=weak_pipeline
+        type="MultiBranch", unsup_student=strong_pipeline, unsup_teacher=weak_pipeline
     ),
 ]
 
@@ -244,7 +244,7 @@ semi_wrapper = dict(
         pseudo_label_initial_score_thr=0.5,
         rpn_pseudo_threshold=0.9,
         cls_pseudo_threshold=0.9,
-        reg_pseudo_threshold=0.01,
+        reg_pseudo_threshold=0.02,
         jitter_times=10,
         jitter_scale=0.06,
         min_pseduo_box_size=0,

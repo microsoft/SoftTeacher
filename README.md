@@ -87,7 +87,7 @@ We followed STAC[1] to evaluate on 5 different data splits for each setting, and
 
 #### Notes
 - We use [wandb](https://wandb.ai/) for visualization, if you don't want to use it, just comment line `273-284` in `configs/soft_teacher/base.py`.
-
+- The project should be compatible to the latest version of `mmdetection`. If you want to switch to the same version `mmdetection` as ours, run `cd thirdparty/mmdetection && git checkout v2.16.0`
 ### Installation
 ```
 make install
