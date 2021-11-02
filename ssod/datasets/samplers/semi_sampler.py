@@ -21,6 +21,8 @@ class DistributedGroupSemiBalanceSampler(Sampler):
         rank=None,
         **kwargs
     ):
+        # check to avoid some problem
+        assert samples_per_gpu > 1, "samples_per_gpu should be greater than 1."
         _rank, _num_replicas = get_dist_info()
         if num_replicas is None:
             num_replicas = _num_replicas
@@ -190,6 +192,7 @@ class DistributedGroupSemiBalanceSampler(Sampler):
 
     def set_epoch(self, epoch):
         self.epoch = epoch
+
     # duplicated, implement it by weight instead of sampling
     # def update_sample_ratio(self):
     #     if self.dynamic_step is not None:
