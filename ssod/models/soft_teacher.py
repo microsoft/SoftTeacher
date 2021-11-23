@@ -164,7 +164,7 @@ class SoftTeacher(MultiSteamDetector):
                 "rpn_proposal", self.student.test_cfg.rpn
             )
             proposal_list = self.student.rpn_head.get_bboxes(
-                *rpn_out, img_metas == img_metas, cfg=proposal_cfg
+                *rpn_out, img_metas=img_metas, cfg=proposal_cfg
             )
             log_image_with_boxes(
                 "rpn",
