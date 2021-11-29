@@ -109,7 +109,7 @@ def log_image_with_boxes(
     if not (interval == 1 or _log_counter[key] % interval == 1):
         return
     if backend == "auto":
-        if wandb is None:
+        if (wandb is None) or (wandb.run is None):
             backend = "file"
         else:
             backend = "wandb"
