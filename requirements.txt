@@ -3,3 +3,4 @@ torchvision
 mmcv-full
 wandb
 prettytable
+imagesize
