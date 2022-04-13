@@ -142,7 +142,7 @@ bash tools/dist_train.sh configs/soft_teacher/soft_teacher_faster_rcnn_r50_caffe
 ```
 - To train model on **new dataset**:
 
-The core idea is to convert a new dataset to coco format. Details about it can be found in the [adding new dataset](https://github.com/open-mmlab/mmdetection/blob/master/docs/tutorials/customize_dataset.md).
+The core idea is to convert a new dataset to coco format. Details about it can be found in the [adding new dataset](https://github.com/open-mmlab/mmdetection/blob/master/docs/tutorials/customize_dataset.md).  See also: tools/dataset/unlabeled_json.py
 
 
 
