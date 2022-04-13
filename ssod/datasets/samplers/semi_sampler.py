@@ -51,6 +51,7 @@ class DistributedGroupSemiBalanceSampler(Sampler):
         self.size_of_dataset = []
         cumulative_sizes = [0] + self.cumulative_sizes
 
+        data_names = ['supervised', 'unsupervised']
         for i, _ in enumerate(self.group_sizes):
             size_of_dataset = 0
             cur_group_inds = np.where(self.flag == i)[0]
@@ -62,6 +63,9 @@ class DistributedGroupSemiBalanceSampler(Sampler):
                     )
                 )[0]
                 size_per_dataset = len(cur_group_cur_dataset)
+                assert size_per_dataset is not 0, (
+                    f'{data_names[j]} dataset does not contain examples from both'
+                    ' h > w and  w > h aspect ratio groups')
                 size_of_dataset = max(
                     size_of_dataset, np.ceil(size_per_dataset / self.sample_ratio[j])
                 )
